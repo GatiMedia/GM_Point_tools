@@ -10,32 +10,23 @@ addUserKnob {41 center l Center T proxy.center}
 addUserKnob {41 size l Size T proxy.size}
 addUserKnob {41 size_1 l Spread T Blur_ps.size}
 addUserKnob {41 size_2 l Blur T Blur_ps2.size}
-addUserKnob {41 x1 l X1 T proxy.x1}
-addUserKnob {41 x2 l X2 T proxy.x2}
-addUserKnob {41 y1 l Y1 T proxy.y1}
-addUserKnob {41 y2 l Y2 T proxy.y2}
-addUserKnob {41 z1 l Z1 T proxy.z1}
-addUserKnob {41 z2 l Z2 T proxy.z2}
+addUserKnob {20 adjust_xyz l "Adjust XYZ" n 1}
+adjust_xyz 0
+addUserKnob {41 x_all l X T proxy.x_all}
+addUserKnob {41 x1 l +X T proxy.x1}
+addUserKnob {41 x2 l -X T proxy.x2}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {41 y_all l Y T proxy.y_all}
+addUserKnob {41 y1 l +Y T proxy.y1}
+addUserKnob {41 y2 l -Y T proxy.y2}
+addUserKnob {26 "" +STARTLINE}
+addUserKnob {41 z_all l Z T proxy.z_all}
+addUserKnob {41 z1 l +Z T proxy.z1}
+addUserKnob {41 z2 l -Z T proxy.z2}
+addUserKnob {20 endGroup n -1}
 addUserKnob {26 ""}
 addUserKnob {26 TEXT l "" +STARTLINE T "<font color=#808080 size=\"5\" >0.1 beta version</font>"}
 addUserKnob {26 HeadlineB l "" +STARTLINE T "<font color=#808080 size=\"2\">GM_PointSelect© by Attila Gasparetz</font>"}
-}
-NoOp {
-inputs 0
-name proxy
-tile_color 0x666666ff
-xpos 510
-ypos 302
-addUserKnob {20 User}
-addUserKnob {13 center l Center}
-addUserKnob {7 size l Size R 0 10}
-size 0.6
-addUserKnob {7 x1 l X1}
-addUserKnob {7 x2 l X2}
-addUserKnob {7 y1 l Y1}
-addUserKnob {7 y2 l Y2}
-addUserKnob {7 z1 l Z1}
-addUserKnob {7 z2 l Z2}
 }
 Input {
 inputs 0
@@ -54,7 +45,7 @@ ypos 182
 set N199d2a80 [stack 0]
 Keyer {
 operation "blue keyer"
-range {{range.B} {"( -(proxy.size + proxy.z2) ) + proxy.center.z"} {"( proxy.size + proxy.z1) + proxy.center.z"} {range.C}}
+range {{range.B} {"( -(proxy.size + proxy.z2+ proxy.z_all) ) + proxy.center.z"} {"( proxy.size + proxy.z1+ proxy.z_all) + proxy.center.z"} {range.C}}
 name Keyer5
 tile_color 0x3fffff
 xpos 290
@@ -64,7 +55,7 @@ push 0
 push $N199d2a80
 Keyer {
 operation "red keyer"
-range {{range.B} {"( -(proxy.size + proxy.x2) ) + proxy.center.x"} {"( proxy.size + proxy.x1 ) + proxy.center.x"} {range.C}}
+range {{range.B} {"( -(proxy.size + proxy.x2 + proxy.x_all) ) + proxy.center.x"} {"( proxy.size + proxy.x1+ proxy.x_all) + proxy.center.x"} {range.C}}
 name Keyer3
 tile_color 0xff0000ff
 xpos -150
@@ -73,7 +64,7 @@ ypos 296
 push $N199d2a80
 Keyer {
 operation "green keyer"
-range {{range.B} {"( -(proxy.size + proxy.y2) ) + proxy.center.y"} {"( proxy.size + proxy.y1) + proxy.center.y"} {range.C}}
+range {{range.B} {"( -(proxy.size + proxy.y2+ proxy.y_all) ) + proxy.center.y"} {"( proxy.size + proxy.y1+ proxy.y_all) + proxy.center.y"} {range.C}}
 name Keyer4
 xpos 70
 ypos 296
@@ -109,5 +100,26 @@ Output {
 name Output
 xpos 70
 ypos 806
+}
+NoOp {
+inputs 0
+name proxy
+tile_color 0x666666ff
+selected true
+xpos 510
+ypos 302
+addUserKnob {20 User}
+addUserKnob {13 center l Center}
+addUserKnob {7 size l Size R 0 10}
+size 0.5
+addUserKnob {7 x_all l X R -1 1}
+addUserKnob {7 x1 l +X R -1 1}
+addUserKnob {7 x2 l -X R -1 1}
+addUserKnob {7 y_all l Y R -1 1}
+addUserKnob {7 y1 l +Y R -1 1}
+addUserKnob {7 y2 l -Y R -1 1}
+addUserKnob {7 z_all l Z R -1 1}
+addUserKnob {7 z1 l +Z R -1 1}
+addUserKnob {7 z2 l -Z R -1 1}
 }
 end_group
