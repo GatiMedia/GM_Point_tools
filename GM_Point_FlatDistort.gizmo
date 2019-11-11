@@ -1,149 +1,150 @@
 Group {
- name GM_Point_FlatDistort
- tile_color 0x434343ff
- note_font_color 0x7dadf9ff
- selected true
- xpos 66000
- ypos -21657
- addUserKnob {20 User}
- addUserKnob {26 info1 l "" +STARTLINE T "GM Point Flat Distort  - BETA v1.01"}
- addUserKnob {26 info2 l "<b><font color=#7DADF9>General</font><b>"}
- addUserKnob {41 size l "X/Y size" T Noise_PD.size}
- addUserKnob {41 speed l Speed T proxy.speed}
- addUserKnob {41 gamma l Gamma T Noise_PD.gamma}
- addUserKnob {26 ""}
- addUserKnob {41 mix l Mix T proxy.mix}
+name GM_Point_FlatDistort
+tile_color 0x434343ff
+note_font_color 0x7dadf9ff
+selected true
+xpos 96540
+ypos -20457
+addUserKnob {20 User}
+addUserKnob {26 info1 l "" +STARTLINE T "GM Point Flat Distort  - BETA v1.01"}
+addUserKnob {26 info2 l "<b><font color=#7DADF9>General</font><b>"}
+addUserKnob {41 size l "X/Y size" T Noise_PD.size}
+addUserKnob {41 speed l Speed T proxy.speed}
+addUserKnob {41 gamma l Gamma T Noise_PD.gamma}
+addUserKnob {26 ""}
+addUserKnob {41 mix l Mix T proxy.mix}
 }
- NoOp {
-  inputs 0
-  name proxy
-  tile_color 0x444444ff
-  xpos 1610
-  ypos -225
-  addUserKnob {20 User}
-  addUserKnob {7 speed l Speed}
-  speed 0.5
-  addUserKnob {7 mix l Mix}
-  mix 0.5
- }
- Input {
-  inputs 0
-  name Input
-  xpos 730
-  ypos -369
- }
- Dot {
-  name Dot93
-  tile_color 0x949494ff
-  note_font_size 22
-  note_font_color 0xffffffff
-  xpos 764
-  ypos -318
- }
-set N7c48b00 [stack 0]
- Remove {
-  name Remove_PD
-  xpos 950
-  ypos -327
- }
- Dot {
-  name Dot94
-  tile_color 0x949494ff
-  note_font_size 22
-  note_font_color 0xffffffff
-  xpos 1094
-  ypos -318
- }
-set N7c55990 [stack 0]
- Noise {
-  size 1.5
-  zoffset {{t*proxy.speed}}
-  lacunarity 3.64
-  gamma 0.1
-  center {640 360}
-  name Noise_PD
-  xpos 1060
-  ypos -225
- }
-set N7c5a1f0 [stack 0]
- TimeOffset {
-  time_offset -1
-  time ""
-  name TimeOffset_PD
-  xpos 1170
-  ypos -225
- }
- Shuffle {
-  red black
-  green alpha
-  blue black
-  alpha black
-  name Shuffle_green
-  label "\[value in]"
-  xpos 1170
-  ypos -87
- }
-push $N7c5a1f0
- Shuffle {
-  red alpha
-  green black
-  blue black
-  alpha black
-  name Shuffle_red
-  label "\[value in]"
-  xpos 1060
-  ypos -87
- }
- Merge2 {
-  inputs 2
-  name Merge_PD_1
-  xpos 1060
-  ypos -9
- }
-push $N7c55990
- Dot {
-  name Dot95
-  tile_color 0x949494ff
-  note_font_size 22
-  note_font_color 0xffffffff
-  xpos 1424
-  ypos -318
- }
- Expression {
-  expr0 (x+0.5)/width
-  expr1 "(y+0.5)/height\n"
-  name Expression_ST_PD
-  xpos 1390
-  ypos -129
- }
- Merge2 {
-  inputs 2
-  mix {{"parent.proxy.mix / 5"}}
-  name Merge_PD_2
-  xpos 1390
-  ypos -9
- }
- Dot {
-  name Dot96
-  tile_color 0x949494ff
-  note_font_size 22
-  note_font_color 0xffffffff
-  xpos 1424
-  ypos 114
- }
-push $N7c48b00
+NoOp {
+inputs 0
+name proxy
+tile_color 0x444444ff
+xpos 1610
+ypos -225
+addUserKnob {20 User}
+addUserKnob {7 speed l Speed}
+speed 0.08
+addUserKnob {7 mix l Mix}
+mix 0.066
+}
+Input {
+inputs 0
+name Input
+xpos 730
+ypos -369
+}
+Dot {
+name Dot93
+tile_color 0x949494ff
+note_font_size 22
+note_font_color 0xffffffff
+xpos 764
+ypos -318
+}
+set N9623b550 [stack 0]
+Remove {
+name Remove_PD
+xpos 950
+ypos -327
+}
+Dot {
+name Dot94
+tile_color 0x949494ff
+note_font_size 22
+note_font_color 0xffffffff
+xpos 1094
+ypos -318
+}
+set Nd5be37d0 [stack 0]
+Noise {
+size 5.5
+zoffset {{t*proxy.speed}}
+lacunarity 3.64
+gamma 0.7
+center {640 360}
+name Noise_PD
+xpos 1060
+ypos -225
+}
+set Nd5be8030 [stack 0]
+TimeOffset {
+time_offset -1
+time ""
+name TimeOffset_PD
+xpos 1170
+ypos -225
+}
+Shuffle {
+red black
+green alpha
+blue black
+alpha black
+name Shuffle_green
+label "\[value in]"
+xpos 1170
+ypos -87
+}
+push $Nd5be8030
+Shuffle {
+red alpha
+green black
+blue black
+alpha black
+name Shuffle_red
+label "\[value in]"
+xpos 1060
+ypos -87
+}
+Merge2 {
+inputs 2
+name Merge_PD_1
+xpos 1060
+ypos -9
+}
+push $Nd5be37d0
+Dot {
+name Dot95
+tile_color 0x949494ff
+note_font_size 22
+note_font_color 0xffffffff
+xpos 1424
+ypos -318
+}
+Expression {
+expr0 (x+0.5)/width
+expr1 "(y+0.5)/height\n"
+name Expression_ST_PD
+xpos 1390
+ypos -129
+}
+Merge2 {
+inputs 2
+operation average
+mix {{"parent.proxy.mix / 5"}}
+name Merge_PD_2
+xpos 1390
+ypos -9
+}
+Dot {
+name Dot96
+tile_color 0x949494ff
+note_font_size 22
+note_font_color 0xffffffff
+xpos 1424
+ypos 114
+}
+push $N9623b550
 add_layer {pos pos.red pos.green pos.blue pos.alpha}
- STMap {
-  inputs 2
-  channels pos
-  uv rgb
-  name STMap_PD
-  xpos 730
-  ypos 105
- }
- Output {
-  name Output1
-  xpos 730
-  ypos 207
- }
+STMap {
+inputs 2
+channels pos
+uv rgb
+name STMap_PD
+xpos 730
+ypos 105
+}
+Output {
+name Output1
+xpos 730
+ypos 279
+}
 end_group
